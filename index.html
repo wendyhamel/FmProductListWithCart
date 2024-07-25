@@ -20,66 +20,106 @@
   <title>Frontend Mentor | Product list with cart</title>
 
 </head>
-<body class="antialiased">
-<p>
-  <span class="">normal text</span>
-  <span class="font-semibold">Semibold text</span>
-  <span class="font-bold">Bold text</span>
-</p>
-  Desserts
-
-  Waffle with Berries
-  Waffle
-  6.50
-  Add to Cart
-
-  Vanilla Bean Crème Brûlée
-  Crème Brûlée
-  7.00
-  Add to Cart
-
-  Macaron Mix of Five
-  Macaron
-  8.00
-  Add to Cart
-
-  Classic Tiramisu
-  Tiramisu
-  5.50
-  Add to Cart
-
-  Pistachio Baklava
-  Baklava
-  4.00
-  Add to Cart
-
-  Lemon Meringue Pie
-  Pie
-  5.00
-  Add to Cart
-
-  Red Velvet Cake
-  Cake
-  4.50
-  Add to Cart
-
-  Salted Caramel Brownie
-  Brownie
-  4.50
-  Add to Cart
-
-  Vanilla Panna Cotta
-  Panna Cotta
-  6.50
-  Add to Cart
-
-  Your Cart (<!-- Quantity -->)
-  Your added items will appear here
-
-</body>
-
+<body
+    class="antialiased"
+    x-data="productFunctions()"
+>
+<main class="grid md:grid-cols-2 lg:grid-cols-3">
+  <section class="lg:col-span-2">
+    <h1> Desserts</h1>
+    <section class="grid md:grid-cols-2 lg:grid-cols-3">
+      <template x-for="product in products">
+        <section>
+          <picture>
+            <source :srcset="product.image.mobile" media="(max-width: 767px)">
+            <source :srcset="product.image.tablet" media="(min-width: 768px)">
+            <source :srcset="product.image.desktop" media="(min-width: 1280px)">
+            <img :src="product.image.desktop" :alt="product.name">
+          </picture>
+          <p x-text="product.name"></p>
+          <h2 x-text="product.category"></h2>
+          <p x-text="product.price"></p>
+          <button>
+            <img src="/assets/images/icon-add-to-cart.svg" alt="">
+            <span>Add to Cart</span>
+          </button>
+          <div>
+            <button>
+              <img src="/assets/images/icon-decrement-quantity.svg" alt="">
+              <span>decrement quantity</span>
+            </button>
+            <p>quantity</p>
+            <button>
+              <img src="/assets/images/icon-increment-quantity.svg" alt="">
+              <span>increment quantity</span>
+            </button>
+          </div>
+        </section>
+      </template>
+    </section>
+  </section>
+  <section>
+    <h2>Your Cart (<span x-text="order.products.length > 0 ? order.products.length : 0"></span>)</h2>
+    <section x-show="order.products.length">
+      <template x-for="product in order.products">
+        <section>
+          <h3 x-text="product.name"></h3>
+          <div>
+            <span x-text="product.amount"></span>
+            <span x-text="product.price"></span>
+            <span x-text="product.total"></span>
+            <button>
+              <span class="sr-only">remove product</span>
+              <img src="assets/images/icon-remove-item.svg" alt="">
+            </button>
+          </div>
+        </section>
+      </template>
+      <section>
+        <p>
+          <span>Order Total</span>
+          <span>&dollar;<span x-text="order.orderTotal"></span></span>
+        </p>
+        <div>
+          <img src="assets/images/icon-carbon-neutral.svg" alt="">
+          <p>This is a <span class="font-semibold">carbon-neutral</span> delivery</p>
+        </div>
+        <button x-on:click="orderConfirmed = true">Confirm Order</button>
+      </section>
+    </section>
+    <section x-show="!order.products.length">
+      <img src="assets/images/illustration-empty-cart.svg" alt="empty cart placeholder image">
+      <p>Your added items will appear here</p>
+    </section>
+  </section>
+  <section x-show="orderConfirmed">
+    <h2>Order Confirmed</h2>
+    <p>We hope you enjoy your food!</p>
+    <section>
+      <section>
+        <img src="product.image.thumb" alt="product name">
+        <h3>Product Name</h3>
+        <p>
+          <span>amount</span>
+          <span>@price for one</span>
+        </p>
+        <p>price total</p>
+      </section>
+      <section>
+        <p>
+          <span>Order Total</span>
+          <span>&dollar;00.00</span>
+        </p>
+        <button x-on:click="emptyOrder()">Start New Order</button>
+      </section>
+    </section>
+  </section>
+</main>
 <footer class="fixed bottom-0 inset-x-0 text-center text-xs text-black bg-white/80 py-1 opacity-0 translate-y-2 hover:opacity-100 hover:translate-y-0 transform transition ease-in-out duration-150">
   Challenge by <a class="hover:underline" href="https://www.frontendmentor.io/challenges/product-list-with-cart-5MmqLVAp_d" target="_blank">Frontend Mentor</a>.
   Coded by <a class="hover:underline" href="https://www.frontendmentor.io/profile/wendyhamel" target="_blank">Wendy Hamel</a>.
 </footer>
+<script src="src/ProductOverview.js"></script>
+</body>
+
 </html>

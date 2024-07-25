@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 @layer base {
+	[x-cloak] { display: none !important; }
+
 	@font-face {
 		font-family: "Red Hat Text";
 		font-style: normal;
