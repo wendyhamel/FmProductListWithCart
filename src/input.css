@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	@font-face {
+		font-family: "Red Hat Text";
+		font-style: normal;
+		font-weight: 400;
+		font-display: swap;
+		src: url("../assets/fonts/static/RedHatText-Regular.ttf") format('ttf');
+	}
+	@font-face {
+		font-family: "Red Hat Text";
+		font-style: normal;
+		font-weight: 600;
+		font-display: swap;
+		src: url("../assets/fonts/static/RedHatText-SemiBold.ttf") format('ttf');
+	}
+	@font-face {
+		font-family: "Red Hat Text";
+		font-style: normal;
+		font-weight: 700;
+		font-display: swap;
+		src: url("../assets/fonts/static/RedHatText-Bold.ttf") format('ttf');
+	}
+
+	@supports (font-variation-settings: normal) {
+
+		@font-face {
+			font-family: "Red Hat Text";
+			font-style: normal;
+			font-weight: 400 700;
+			font-display: swap;
+			src: url("../assets/fonts/RedHatText-VariableFont_wght.ttf") format('ttf');
+		}
+		@font-face {
+			font-family: "Red Hat Text";
+			font-style: italic;
+			font-weight: 400 700;
+			font-display: swap;
+			src: url("../assets/fonts/RedHatText-Italic-VariableFont_wght.ttf") format('ttf');
+		}
+	}
+
+}
