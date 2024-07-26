@@ -1,27 +1,5 @@
 window.productFunctions = function() {
 	return {
-		orderConfirmed: false,
-		order: {
-			products: [
-				{
-					"thumbnail": "./assets/images/image-waffle-thumbnail.jpg",
-					"name": "Waffle with Berries",
-					"category": "Waffle",
-					"amount": 1,
-					"price": 6.50,
-					"total": 6.50
-				},
-				{
-					"thumbnail": "./assets/images/image-creme-brulee-thumbnail.jpg",
-					"name": "Vanilla Bean Crème Brûlée",
-					"category": "Crème Brûlée",
-					"amount": 2,
-					"price": 7.00,
-					"total": 14
-				},
-			],
-			orderTotal: 20.50
-		},
 		products: [
 			{
 				"image": {
@@ -123,6 +101,50 @@ window.productFunctions = function() {
 				"price": 6.50
 			}
 		],
+		orderConfirmed: false,
+		categoryCount: [],
+		order: {
+			products: [
+				{
+					"name": "Waffle with Berries",
+					"category": "Waffle",
+					"thumbnail": "./assets/images/image-waffle-thumbnail.jpg",
+					"amount": 1,
+					"price": 6.50,
+					"total": 6.50
+				},
+				{
+					"name": "Vanilla Bean Crème Brûlée",
+					"category": "Crème Brûlée",
+					"thumbnail": "./assets/images/image-creme-brulee-thumbnail.jpg",
+					"amount": 2,
+					"price": 7.00,
+					"total": 14
+				},
+			],
+			orderTotal: 20.50
+		},
+		addToCart() {
+			return this.products.filter((category) => category)
+			if (this.product.category) {
+				this.product.amount++
+			}
+			let item=  {
+				name: this.product.name,
+				category: this.product.category,
+				amount: this.product.amount,
+				price: this.product.price,
+				thumbnail: this.product.image.thumbnail,
+				total: this.product.amount * this.product.price,
+			}
+
+		},
+		reduceFromCart() {
+
+		},
+		removeFromCart() {
+
+		},
 		emptyOrder() {
 			this.order.products = []
 			this.orderTotal = 0
