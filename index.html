@@ -61,20 +61,22 @@
   <section>
     <h2>Your Cart (<span x-text="order.products.length > 0 ? order.products.length : 0"></span>)</h2>
     <section x-show="order.products.length">
-      <template x-for="product in order.products">
-        <section>
-          <h3 x-text="product.name"></h3>
-          <div>
-            <span x-text="product.amount"></span>
-            <span x-text="product.price"></span>
-            <span x-text="product.total"></span>
-            <button>
-              <span class="sr-only">remove product</span>
-              <img src="assets/images/icon-remove-item.svg" alt="">
-            </button>
-          </div>
-        </section>
-      </template>
+      <ul>
+        <template x-for="product in order.products">
+          <li>
+            <h3 x-text="product.name"></h3>
+            <div>
+              <span x-text="product.amount"></span>
+              <span x-text="product.price"></span>
+              <span x-text="product.total"></span>
+              <button>
+                <span class="sr-only">remove product</span>
+                <img src="assets/images/icon-remove-item.svg" alt="">
+              </button>
+            </div>
+          </li>
+        </template>
+        </ul>
       <section>
         <p>
           <span>Order Total</span>
@@ -96,19 +98,23 @@
     <h2>Order Confirmed</h2>
     <p>We hope you enjoy your food!</p>
     <section>
-      <section>
-        <img src="product.image.thumb" alt="product name">
-        <h3>Product Name</h3>
-        <p>
-          <span>amount</span>
-          <span>@price for one</span>
-        </p>
-        <p>price total</p>
-      </section>
+      <ul>
+        <template x-for="product in order.products">
+          <li>
+            <img :src="product.thumbnail" :alt="product.name">
+            <h3 x-text="product.name"></h3>
+            <p>
+              <span x-text="product.amount"></span>
+              <span>@<span x-text="product.price"></span></span>
+            </p>
+            <p x-text="product.total"></p>
+          </li>
+        </template>
+      </ul>
       <section>
         <p>
           <span>Order Total</span>
-          <span>&dollar;00.00</span>
+          <span>&dollar;<span x-text="order.orderTotal"></span></span>
         </p>
         <button x-on:click="emptyOrder()">Start New Order</button>
       </section>

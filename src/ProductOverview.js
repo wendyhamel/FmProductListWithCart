@@ -4,6 +4,7 @@ window.productFunctions = function() {
 		order: {
 			products: [
 				{
+					"thumbnail": "./assets/images/image-waffle-thumbnail.jpg",
 					"name": "Waffle with Berries",
 					"category": "Waffle",
 					"amount": 1,
@@ -11,6 +12,7 @@ window.productFunctions = function() {
 					"total": 6.50
 				},
 				{
+					"thumbnail": "./assets/images/image-creme-brulee-thumbnail.jpg",
 					"name": "Vanilla Bean Crème Brûlée",
 					"category": "Crème Brûlée",
 					"amount": 2,
