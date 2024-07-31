@@ -102,52 +102,42 @@ window.productFunctions = function() {
 			}
 		],
 		orderConfirmed: false,
-		categoryCount: [],
 		order: {
-			products: [
-				{
-					"name": "Waffle with Berries",
-					"category": "Waffle",
-					"thumbnail": "./assets/images/image-waffle-thumbnail.jpg",
-					"amount": 1,
-					"price": 6.50,
-					"total": 6.50
-				},
-				{
-					"name": "Vanilla Bean Crème Brûlée",
-					"category": "Crème Brûlée",
-					"thumbnail": "./assets/images/image-creme-brulee-thumbnail.jpg",
-					"amount": 2,
-					"price": 7.00,
-					"total": 14
-				},
-			],
-			orderTotal: 20.50
+			products: [],
+			orderTotal: 0
 		},
-		addToCart() {
-			return this.products.filter((category) => category)
-			if (this.product.category) {
-				this.product.amount++
+		productInOrder(categoryName) {
+			return this.order.products.find(({category}) => category === categoryName);
+		},
+		addToCart(product) {
+			product.quantity = 1
+			product.total = product.quantity * product.price
+			this.order.products.push(product)
+			this.orderTotal()
+		},
+		orderTotal() {
+			return this.order.orderTotal = this.order.products.reduce( (orderTotal, productTotal) => orderTotal + productTotal.total, 0)
+		},
+		removeFromCart(product) {
+			let position = this.order.products.lastIndexOf(product)
+			this.order.products.splice(position, 1)
+		},
+		decrement(product) {
+			this.productInOrder(product.category).quantity --
+			product.total = product.quantity * product.price
+			if (this.productInOrder(product.category).quantity < 1) {
+				this.removeFromCart(product)
 			}
-			let item=  {
-				name: this.product.name,
-				category: this.product.category,
-				amount: this.product.amount,
-				price: this.product.price,
-				thumbnail: this.product.image.thumbnail,
-				total: this.product.amount * this.product.price,
-			}
-
+			this.orderTotal()
 		},
-		reduceFromCart() {
-
-		},
-		removeFromCart() {
-
+		increment(product) {
+			this.productInOrder(product.category).quantity ++
+			product.total = product.quantity * product.price
+			this.orderTotal()
 		},
 		emptyOrder() {
 			this.order.products = []
-			this.orderTotal = 0
+			this.orderTotal()
 			this.orderConfirmed = false
 		}
 	}
