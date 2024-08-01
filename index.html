@@ -8,12 +8,6 @@
 
   <link href="./src/output.css" rel="stylesheet">
 
-<!--  &lt;!&ndash;  Font Family   &ndash;&gt;-->
-<!--  <link rel="preconnect" href="https://fonts.googleapis.com">-->
-<!--  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
-<!--  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">-->
-
-
   <!-- Alpine Core -->
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
@@ -26,7 +20,7 @@
 >
 <main class="grid md:grid-cols-2 lg:grid-cols-3">
   <section class="lg:col-span-2">
-    <h1> Desserts</h1>
+    <h1 class="text-5xl font-bold">Desserts</h1>
     <section class="grid md:grid-cols-2 lg:grid-cols-3">
       <template x-for="product in products">
         <section>
@@ -45,14 +39,14 @@
           </button>
           <div class="bg-red flex gap-2 items-center" x-show="productInOrder(product.category)">
             <button class="py-2" x-on:click="decrement(product)">
-              <img src="/assets/images/icon-decrement-quantity.svg" alt="">
+              <img class="w-full h-full object-cover" src="/assets/images/icon-decrement-quantity.svg" alt="">
               <span class="sr-only">decrement quantity</span>
             </button>
             <template x-if="productInOrder(product.category)">
               <p x-text="productInOrder(product.category).quantity"></p>
             </template>
             <button class="" x-on:click="increment(product)">
-              <img src="/assets/images/icon-increment-quantity.svg" alt="">
+              <img class="w-full h-full object-cover" src="/assets/images/icon-increment-quantity.svg" alt="">
               <span class="sr-only">increment quantity</span>
             </button>
           </div>

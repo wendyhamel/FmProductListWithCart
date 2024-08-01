@@ -459,7 +459,7 @@ video {
 
   font-display: swap;
 
-  src: url("../assets/fonts/static/RedHatText-Regular.ttf") format('ttf');
+  src: url("../assets/fonts/static/RedHatText-Regular.woff2") format('woff2'), url("../assets/fonts/static/RedHatText-Regular.ttf") format('ttf');
 }
 
 @font-face {
@@ -471,7 +471,7 @@ video {
 
   font-display: swap;
 
-  src: url("../assets/fonts/static/RedHatText-SemiBold.ttf") format('ttf');
+  src: url("../assets/fonts/static/RedHatText-SemiBold.woff2") format('woff2'), url("../assets/fonts/static/RedHatText-SemiBold.ttf") format('ttf');
 }
 
 @font-face {
@@ -483,7 +483,7 @@ video {
 
   font-display: swap;
 
-  src: url("../assets/fonts/static/RedHatText-Bold.ttf") format('ttf');
+  src: url("../assets/fonts/static/RedHatText-Bold.woff2") format('woff2'), url("../assets/fonts/static/RedHatText-Bold.ttf") format('ttf');
 }
 
 @supports (font-variation-settings: normal) {
@@ -496,7 +496,7 @@ video {
 
     font-display: swap;
 
-    src: url("../assets/fonts/RedHatText-VariableFont_wght.ttf") format('ttf');
+    src: url("../assets/fonts/RedHatText-VariableFont_wght.woff2") format('woff2'), url("../assets/fonts/RedHatText-VariableFont_wght.ttf") format('ttf');
   }
 
   @font-face {
@@ -508,7 +508,7 @@ video {
 
     font-display: swap;
 
-    src: url("../assets/fonts/RedHatText-Italic-VariableFont_wght.ttf") format('ttf');
+    src: url("../assets/fonts/RedHatText-Italic-VariableFont_wght.woff2") format('woff2'), url("../assets/fonts/RedHatText-Italic-VariableFont_wght.ttf") format('ttf');
   }
 }
 
@@ -653,6 +653,14 @@ video {
   display: grid;
 }
 
+.h-full {
+  height: 100%;
+}
+
+.w-full {
+  width: 100%;
+}
+
 .translate-y-2 {
   --tw-translate-y: 0.5rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -679,6 +687,11 @@ video {
   background-color: rgb(255 255 255 / 0.8);
 }
 
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -693,9 +706,18 @@ video {
   text-align: center;
 }
 
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.font-bold {
+  font-weight: 700;
 }
 
 .font-semibold {
