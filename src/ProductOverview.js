@@ -137,7 +137,7 @@ window.productFunctions = function() {
 		},
 		emptyOrder() {
 			this.order.products = []
-			this.orderTotal()
+			this.orderTotal = 0
 			this.orderConfirmed = false
 		}
 	}

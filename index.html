@@ -38,7 +38,7 @@
           </picture>
           <p x-text="product.name"></p>
           <h2 x-text="product.category"></h2>
-          <p x-text="product.price"></p>
+          <p x-text="Number(product.price).toFixed(2)"></p>
           <button x-show="!productInOrder(product.category)" x-on:click="addToCart(product)">
             <img src="/assets/images/icon-add-to-cart.svg" alt="">
             <span>Add to Cart</span>
@@ -69,8 +69,8 @@
             <h3 x-text="product.name"></h3>
             <div>
               <span x-text="product.quantity"></span>
-              <span x-text="product.price"></span>
-              <span x-text="product.total"></span>
+              <span x-text="Number(product.price).toFixed(2)"></span>
+              <span x-text="Number(product.total).toFixed(2)"></span>
               <button x-on:click="removeFromCart(product)">
                 <span class="sr-only">remove product</span>
                 <img src="assets/images/icon-remove-item.svg" alt="">
@@ -82,7 +82,7 @@
       <section>
         <p>
           <span>Order Total</span>
-          <span>&dollar;<span x-text="order.orderTotal"></span></span>
+          <span>&dollar;<span x-text="Number(order.orderTotal).toFixed(2)"></span></span>
         </p>
         <div>
           <img src="assets/images/icon-carbon-neutral.svg" alt="">
