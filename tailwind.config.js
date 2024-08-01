@@ -6,6 +6,11 @@ module.exports = {
       'sans': ['Red\\ Hat\\ Text', 'sans-serif']
     },
     extend: {
+        fontSize: {
+            '2.5xl': '1.75rem',
+            '3.5xl': '2.05rem',
+            '4.5xl': '2.5rem',
+        },
       colors:
           {
             red: 'hsl(14, 86%, 42%)',

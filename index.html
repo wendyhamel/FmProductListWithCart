@@ -18,44 +18,50 @@
     class="antialiased"
     x-data="productFunctions()"
 >
-<main class="grid md:grid-cols-2 lg:grid-cols-3">
-  <section class="lg:col-span-2">
-    <h1 class="text-5xl font-bold">Desserts</h1>
-    <section class="grid md:grid-cols-2 lg:grid-cols-3">
+<main class="pt-4 pb-6 grid text-rose-900 bg-rose-50 md:grid-cols-2 lg:grid-cols-3">
+  <section class="px-6 lg:col-span-2">
+    <h1 class="text-4.5xl font-bold">Desserts</h1>
+    <section class="relative mt-6 pt-1 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       <template x-for="product in products">
         <section>
           <picture>
             <source :srcset="product.image.mobile" media="(max-width: 767px)">
             <source :srcset="product.image.tablet" media="(min-width: 768px)">
             <source :srcset="product.image.desktop" media="(min-width: 1280px)">
-            <img :src="product.image.desktop" :alt="product.name">
+            <img class="rounded-lg border-2 border-transparent" :class="productInOrder(product.category) ? 'border-red'" :src="product.image.desktop" :alt="product.name">
           </picture>
-          <p x-text="product.name"></p>
-          <h2 x-text="product.category"></h2>
-          <p x-text="Number(product.price).toFixed(2)"></p>
-          <button x-show="!productInOrder(product.category)" x-on:click="addToCart(product)">
-            <img src="/assets/images/icon-add-to-cart.svg" alt="">
-            <span>Add to Cart</span>
-          </button>
-          <div class="bg-red flex gap-2 items-center" x-show="productInOrder(product.category)">
-            <button class="py-2" x-on:click="decrement(product)">
-              <img class="w-full h-full object-cover" src="/assets/images/icon-decrement-quantity.svg" alt="">
-              <span class="sr-only">decrement quantity</span>
-            </button>
-            <template x-if="productInOrder(product.category)">
-              <p x-text="productInOrder(product.category).quantity"></p>
-            </template>
-            <button class="" x-on:click="increment(product)">
-              <img class="w-full h-full object-cover" src="/assets/images/icon-increment-quantity.svg" alt="">
-              <span class="sr-only">increment quantity</span>
-            </button>
+          <div class="absolute inset-x-0 grid place-content-center -translate-y-1/2">
+              <button class="bg-white rounded-full border border-rose-400 flex items-center gap-2 py-3 px-7" x-show="!productInOrder(product.category)" x-on:click="addToCart(product)">
+                <img src="/assets/images/icon-add-to-cart.svg" alt="">
+                <span class="block font-semibold text-sm">Add to Cart</span>
+              </button>
+              <div class="bg-red flex px-0.5 gap-8 items-center rounded-full" x-show="productInOrder(product.category)">
+                <button class="px-3 py-3.5 grid place-content-center" x-on:click="decrement(product)">
+                  <span class="border border-white p-px rounded-full w-4 h-4 grid place-content-center">
+                    <img class="w-full h-full object-cover" src="./assets/images/icon-decrement-quantity.svg" alt="">
+                    <span class="sr-only">decrement quantity</span>
+                  </span>
+                </button>
+                <template x-if="productInOrder(product.category)">
+                  <p class="text-white font-semibold text-sm" x-text="productInOrder(product.category).quantity"></p>
+                </template>
+                <button class="px-3 py-3.5 grid place-content-center" x-on:click="increment(product)">
+                  <span class="border border-white p-px rounded-full w-4 h-4 grid place-content-center">
+                    <img class="w-full h-full object-cover" src="./assets/images/icon-increment-quantity.svg" alt="">
+                    <span class="sr-only">increment quantity</span>
+                  </span>
+                </button>
+              </div>
           </div>
+          <h2 class="text-rose-500 text-sm mt-9 mb-0.5" x-text="product.category"></h2>
+          <p class="font-semibold" x-text="product.name"></p>
+          <p class="text-red font-semibold"><span>&dollar;</span><span x-text="Number(product.price).toFixed(2)"></span></p>
         </section>
       </template>
     </section>
   </section>
-  <section>
-    <h2>Your Cart (<span x-text="order.products.length > 0 ? order.products.length : 0"></span>)</h2>
+  <section class="mx-6 mt-8 bg-white rounded-xl px-6 pt-6 pb-10">
+    <h2 class="text-2xl font-bold text-red">Your Cart (<span x-text="order.products.length > 0 ? order.products.length : 0"></span>)</h2>
     <section x-show="order.products.length">
       <ul>
         <template x-for="product in order.products">
@@ -86,8 +92,8 @@
       </section>
     </section>
     <section x-show="!order.products.length">
-      <img src="assets/images/illustration-empty-cart.svg" alt="empty cart placeholder image">
-      <p>Your added items will appear here</p>
+      <img class="mx-auto mt-10 mb-4" src="assets/images/illustration-empty-cart.svg" alt="empty cart placeholder image">
+      <p class="text-center text-rose-500 font-semibold text-sm">Your added items will appear here</p>
     </section>
   </section>
   <section x-show="orderConfirmed">
@@ -97,20 +103,20 @@
       <ul>
         <template x-for="product in order.products">
           <li>
-            <img :src="product.thumbnail" :alt="product.name">
+            <img :src="product.image.thumbnail" :alt="product.name">
             <h3 x-text="product.name"></h3>
             <p>
               <span x-text="product.quantity"></span>
-              <span>@<span x-text="product.price"></span></span>
+              <span>@<span x-text="Number(product.price).toFixed(2)"></span></span>
             </p>
-            <p x-text="product.total"></p>
+            <p><span>&dollar;</span><span x-text="Number(product.total).toFixed(2)"></span></p>
           </li>
         </template>
       </ul>
       <section>
         <p>
           <span>Order Total</span>
-          <span>&dollar;<span x-text="order.orderTotal"></span></span>
+          <span>&dollar;<span x-text="Number(order.orderTotal).toFixed(2)"></span></span>
         </p>
         <button x-on:click="emptyOrder()">Start New Order</button>
       </section>
