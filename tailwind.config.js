@@ -13,7 +13,10 @@ module.exports = {
         },
       colors:
           {
-            red: 'hsl(14, 86%, 42%)',
+            red: {
+                DEFAULT: 'hsl(14, 86%, 42%)',
+                '700': 'hsl(14, 68%, 32%)'
+            },
             green: 'hsl(159, 69%, 38%)',
             rose: {
               50 : 'hsl(20, 50%, 98%)',
