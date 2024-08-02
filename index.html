@@ -159,8 +159,8 @@
           <h2 class="mt-6 mb-2 text-4.5xl leading-[1.2] font-bold">Order Confirmed</h2>
           <p class="text-rose-500">We hope you enjoy your food!</p>
         </div>
-        <section class="mt-6 mb-8 rounded-lg bg-rose-50 pt-3 px-6 pb-6 flex-1 overflow-hidden">
-          <ul>
+        <section class="mt-6 mb-8 rounded-lg bg-rose-50 flex flex-col pt-3 pb-6 overflow-hidden">
+          <ul class="flex-1 px-6 overflow-y-auto">
             <template x-for="product in order.products">
               <li class="flex items-center gap-4 border-b border-rose-100 py-4 last:pb-6">
                 <img class="rounded w-12 h-12 object-cover object-center" :src="product.image.thumbnail" :alt="product.name">
@@ -177,7 +177,7 @@
               </li>
             </template>
           </ul>
-          <p class="flex gap-4 items-center justify-between pt-6">
+          <p class="flex gap-4 items-center justify-between px-6 pt-6">
             <span class="text-sm">Order Total</span>
             <span class="text-2xl font-bold">&dollar;<span x-text="Number(order.orderTotal).toFixed(2)"></span></span>
           </p>
