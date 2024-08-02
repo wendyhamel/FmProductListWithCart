@@ -135,14 +135,14 @@
     </section>
     <section
         x-show="orderConfirmed"
-        x-cloak=""
+        x-cloak
         x-transition:enter="transition ease-out duration-300"
         x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100"
         x-transition:leave="transition ease-in duration-300"
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
-        class="fixed inset-0 bg-black/50 md:grid md:place-content-center"
+        class="fixed inset-0 bg-black/50 transition-opacity md:grid md:place-content-center"
     >
       <div
           x-show="orderConfirmed"
@@ -152,12 +152,14 @@
           x-transition:leave="transition ease-in duration-300"
           x-transition:leave-start="translate-y-0"
           x-transition:leave-end="translate-y-full"
-          class="absolute bottom-0 inset-x-0 max-h-screen overflow-y-scroll bg-white rounded-t-xl mt-32 pt-12 pb-6 px-6 md:mb-32 md:relative md:rounded-xl md:mx-auto md:w-[592px] md:h-[685px] md:p-10"
+          class="fixed z-10 bottom-0 inset-x-0 flex flex-col overflow-hidden max-h-screen bg-white rounded-t-xl mt-32 pt-12 pb-6 px-6 md:mb-32 md:relative md:rounded-xl md:mx-auto md:w-[592px] md:h-[685px] md:p-10"
       >
-        <img src="./assets/images/icon-order-confirmed.svg" alt="">
-        <h2 class="mt-6 mb-2 text-4.5xl leading-[1.2] font-bold">Order Confirmed</h2>
-        <p class="text-rose-500">We hope you enjoy your food!</p>
-        <section class="mt-6 mb-8 rounded-lg bg-rose-50 pt-3 px-6 pb-6">
+        <div>
+          <img src="./assets/images/icon-order-confirmed.svg" alt="">
+          <h2 class="mt-6 mb-2 text-4.5xl leading-[1.2] font-bold">Order Confirmed</h2>
+          <p class="text-rose-500">We hope you enjoy your food!</p>
+        </div>
+        <section class="mt-6 mb-8 rounded-lg bg-rose-50 pt-3 px-6 pb-6 flex-1 overflow-hidden">
           <ul>
             <template x-for="product in order.products">
               <li class="flex items-center gap-4 border-b border-rose-100 py-4 last:pb-6">
