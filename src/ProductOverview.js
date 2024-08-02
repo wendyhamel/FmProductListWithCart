@@ -104,7 +104,7 @@ window.productFunctions = function() {
 		orderConfirmed: false,
 		order: {
 			products: [],
-			orderTotal: 0
+			orderTotal: null
 		},
 		productInOrder(categoryName) {
 			return this.order.products.find(({category}) => category === categoryName);
@@ -142,7 +142,7 @@ window.productFunctions = function() {
 		},
 		emptyOrder() {
 			this.order.products = []
-			this.orderTotal = 0
+			this.order.orderTotal = null
 			this.orderConfirmed = false
 		}
 	}
