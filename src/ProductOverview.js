@@ -118,6 +118,11 @@ window.productFunctions = function() {
 		orderTotal() {
 			return this.order.orderTotal = this.order.products.reduce( (orderTotal, productTotal) => orderTotal + productTotal.total, 0)
 		},
+		orderProductsQuantity() {
+			let orderQuantity = 0
+			this.order.products.forEach((product) => orderQuantity = orderQuantity + product.quantity )
+			return orderQuantity
+		},
 		removeFromCart(product) {
 			let position = this.order.products.lastIndexOf(product)
 			this.order.products.splice(position, 1)

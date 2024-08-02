@@ -80,7 +80,7 @@
     </section>
   </section>
   <section class="mx-6 mt-8 bg-white rounded-xl p-6">
-    <h2 class="text-2xl font-bold text-red pb-3">Your Cart (<span x-text="order.products.length > 0 ? order.products.length : 0"></span>)</h2>
+    <h2 class="text-2xl font-bold text-red pb-3">Your Cart (<span x-text="order.products.length > 0 ? orderProductsQuantity() : 0"></span>)</h2>
     <section x-show="order.products.length">
       <ul>
         <template x-for="product in order.products">
